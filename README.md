@@ -7,7 +7,10 @@ Selamat datang ke repositori kelompok D11, yaitu aplikasi yang bernama EV-ryday!
 > diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia
 > pada Semester Gasal, Tahun Ajaran 2022/2023.
 
-![Main Deployment Status](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/dpl.yml/badge.svg?branch=main)
+[![Staging](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/staging.yml)
+[![Pre-Release](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/pre-release.yml)
+[![Release](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/release.yml)
+[![AppCenter Build Status](https://build.appcenter.ms/v0.1/apps/c1c2d3f3-a0b4-4138-aa3f-f39203c8d91e/branches/main/badge)](https://appcenter.ms))
 
 ## 🧑🏻‍💻 Pengembang Aplikasi : Kelompok - D11👩🏻‍💻
 
@@ -23,6 +26,7 @@ Selamat datang ke repositori kelompok D11, yaitu aplikasi yang bernama EV-ryday!
 Aplikasi EV-ryday memiliki tujuan yakni menjadi sarana masyarakat untuk beralih kepada moda transportasi dengan sumber daya energi yang berkelanjutan dan lebih terbarukan pada masa yang akan datang.
 
 Manfaat dari aplikasi EV-ryday adalah sebagai berikut:
+
 1. Membantu pemilik kendaraan listrik lebih mudah dalam melakukan hal-hal yang berhubungan dengan pemeliharaan dan perawatan.
 2. Memberikan wawasan kepada masyarakat yang masih belum atau ragu-ragu mengenai pemeliharaan kendaraan listrik tersebut.
 3. Menjadikan aplikasi EV-ryday untuk menjadi wadah bertukar informasi mengenai kendaraan listrik dari segi kebutuhan hingga jasa pemeliharaan.
@@ -35,30 +39,29 @@ Manfaat dari aplikasi EV-ryday adalah sebagai berikut:
   1. Mencari informasi seputar kendaraan listrik
   2. Bertanya seputar kendaraan listrik pada forum yang tersedia
   3. Mencari mobill listrik impian
-- Permasalahan : 
+- Permasalahan :
   1. Ingin membeli mobil listrik tetapi masih awam mengenai mobil listrik
   2. Bingung untuk bertanya seputar mobil listrik
 
 2. Pengguna Baru mobil listrik
 
-- Goals : 
+- Goals :
   1. Mencari informasi mengenai tips merawat mobil listrik
   2. Mencari informasi mengenai charging station di sekitar tempat tinggalnya
   3. Bergabung dengan komunitas mobil listrik untuk menambah relasi dan informasi
-- Permasalahan : 
+- Permasalahan :
   1. Baru membeli mobil listrik dan tidak mengerti cara merawat mobil listrik dengan baik
   2. Belum mempunyai home charging dan harus mencari charging station yang paling dekat dengan rumahnya
   3. Tidak memiliki relasi sesama pengguna mobil listrik
 
 3. Pengguna Antusias Mobil Listrik
 
-- Goals : 
+- Goals :
   1. Membantu pengguna yang masih baru dalam dunia mobil listrik dengan aktif menjawab pada forum
   2. Menambahkan charging station yang belum tercover oleh website
-- Permasalahan : 
+- Permasalahan :
   1. Mencari tempat untuk sharing seputar mobil listrik
   2. Menemukan charging station baru dan ingin sharing kepada komunitas
-
 
 ## 📝 Modul dan Pembagiannya 📝
 

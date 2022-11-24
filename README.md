@@ -77,3 +77,12 @@ Manfaat dari aplikasi EV-ryday adalah sebagai berikut:
 | 5   | EVishlist     | Catalog mobil elektronik untuk mengenal pengguna mengenai mobil listrik                   | Fitria   |
 |     | (EV Wishlist) | User dapat menandai mobil yang disuka untuk disimpan sebagai wishlist                     |          |
 | 6   | EV News       | User bisa request untuk publish blog/news lewat page news, lalu admin web yang verifikasi | Moreno   |
+
+## Alur Pengintegrasian Web Service
+Semua bagian dari aplikasi dalam module yang sebelumnya menggunakan form atau ajax akan menggunakan http request pada flutter.
+
+Mendapatkan data dari server ev-ryday di heroku akan menggunakan bantuan library http. Idealnya semua akan dibuat class yang akan mengatasi pemanggilan Http request ke server. Class tersebut sekaligus mengatasi permasalahan csrf token dan session cookie dari pengguna.
+
+Untuk mendapatkan csrf token akan diberikan request yerlebih dahulu ke server, kemudian server akan mengembalikan csrf token. Jika csrf token kadarluarsa, maka akan dilakukan request ulang ke server. Jika session kadarluarsa, maka pengguna wajib akan dialihkan untuk login ulang. Baik csrf token dan session cookie akan disimpan ke local storage dari aplikasi.
+
+API dari semua endpoint disimpan sebagai konstanta untuk meningkatkan kerapian kode. Sehingga akan lebih mudah untuk dilakukan development yang lebih lanjut.

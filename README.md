@@ -76,7 +76,7 @@ Manfaat dari aplikasi EV-ryday adalah sebagai berikut:
 |     | (EV Services) | User bisa mendapatkan kontak lengkap mengenai tempat servis tersebut                      |          |
 | 5   | EVishlist     | Catalog mobil elektronik untuk mengenal pengguna mengenai mobil listrik                   | Fitria   |
 |     | (EV Wishlist) | User dapat menandai mobil yang disuka untuk disimpan sebagai wishlist                     |          |
-| 6   | EV News       | User bisa request untuk publish blog/news lewat page news, lalu admin web yang verifikasi | Moreno   |
+| 6   | EV News       | User dapat melihat news sekitar EV, dan bisa filtering sesuai source news yang dilihat    | Moreno   |
 
 ## Alur Pengintegrasian Web Service
 Semua bagian dari aplikasi dalam module yang sebelumnya menggunakan form atau ajax akan menggunakan http request pada flutter.

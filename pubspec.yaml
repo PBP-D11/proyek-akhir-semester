@@ -31,6 +31,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  findcharge:
+    path: findcharge
 
   evishlist:
     path: evishlist

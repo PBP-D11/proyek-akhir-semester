@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:evryday/screens/homepage.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:evryday/common/cookie_request.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 void main() => runApp(const App());
 
@@ -15,6 +17,10 @@ class App extends StatelessWidget {
       providers: <SingleChildWidget>[
         ChangeNotifierProvider<ScreenState>(create: (_) => ScreenState()),
         ChangeNotifierProvider<BudgetModel>(create: (_) => BudgetModel()),
+        Provider(create: (_) {
+          CookieRequest request = CookieRequest();
+          return request;
+        })
       ],
       child: MaterialApp(
         title: 'PBP Tugas Flutter',

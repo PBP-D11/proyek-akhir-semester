@@ -39,6 +39,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^6.0.4
+<<<<<<< HEAD
+=======
+  http: ^0.13.5
+  shared_preferences: ^2.0.15
+>>>>>>> 56a6ca1926918f622ddf0300e919cd5f0c458dd5
   pbp_django_auth: ^0.3.0
 
 dev_dependencies:

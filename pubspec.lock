@@ -94,7 +94,11 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
+<<<<<<< HEAD
     dependency: transitive
+=======
+    dependency: "direct main"
+>>>>>>> 56a6ca1926918f622ddf0300e919cd5f0c458dd5
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -213,7 +217,11 @@ packages:
     source: hosted
     version: "6.0.4"
   shared_preferences:
+<<<<<<< HEAD
     dependency: transitive
+=======
+    dependency: "direct main"
+>>>>>>> 56a6ca1926918f622ddf0300e919cd5f0c458dd5
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
@@ -314,7 +322,11 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.4.14"
+=======
+    version: "0.4.12"
+>>>>>>> 56a6ca1926918f622ddf0300e919cd5f0c458dd5
   typed_data:
     dependency: transitive
     description:
@@ -328,7 +340,11 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.1.4"
+=======
+    version: "2.1.2"
+>>>>>>> 56a6ca1926918f622ddf0300e919cd5f0c458dd5
   win32:
     dependency: transitive
     description:

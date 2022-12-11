@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +14,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
+
+  String checkTitle(dynamic username) {
+    if (username == null) {
+      return "Welcome to EV-ryday";
+    }
+    return "Hello, $username!";
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -29,9 +38,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(checkTitle(request.getJsonData()['username'])),
       ),
       body: Center(
         child: Column(

@@ -35,8 +35,8 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: [
             Scaffold(
+              appBar: AppBar(title: const Text("Login")),
               drawer: const DrawerComponents(currentPage: "Login"),
-              backgroundColor: Colors.transparent,
               body: Column(
                 children: [
                   const Flexible(
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         'EV-ryday',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 60,
                             fontWeight: FontWeight.bold),
                       ),
@@ -56,15 +56,15 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: "Masukkan Username",
                             labelText: "Username",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.black),
                             icon: const Icon(Icons.attach_email),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.black),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -90,18 +90,18 @@ class _LoginPageState extends State<LoginPage> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: "Masukkan Password",
                             labelText: "Password",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.black),
                             icon: const Icon(
                               Icons.lock_outline,
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.black),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -130,15 +130,16 @@ class _LoginPageState extends State<LoginPage> {
                         width: size.width * 0.8,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: const Color(0xFF24262A),
+                          color: Colors.black26,
                         ),
                         child: TextButton(
                           onPressed: () async {
-                            final response = await request
-                                .login("https://ev-ryday.up.railway.app/login-flutter/", {
-                              'username': username,
-                              'password': password1,
-                            });
+                            final response = await request.login(
+                                "https://ev-ryday.up.railway.app/login-flutter/",
+                                {
+                                  'username': username,
+                                  'password': password1,
+                                });
                             if (response['status']) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -164,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                             'Submit',
                             style: TextStyle(
                                 fontSize: 22,
-                                color: Colors.white,
+                                color: Colors.black54,
                                 height: 1.5,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -188,11 +189,11 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: const BoxDecoration(
                           border: Border(
                               bottom:
-                                  BorderSide(width: 1, color: Colors.white))),
+                                  BorderSide(width: 1, color: Colors.black))),
                       child: const Text(
                         'Create New Account',
                         style: TextStyle(
-                            fontSize: 22, color: Colors.white, height: 1.5),
+                            fontSize: 22, color: Colors.black, height: 1.5),
                       ),
                     ),
                   ),

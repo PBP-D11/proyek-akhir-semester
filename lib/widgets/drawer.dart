@@ -7,8 +7,9 @@ import 'package:evryday/screens/homepage.dart';
 import 'package:evryday/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
+import 'package:evryday/screens/profile.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
-import 'package:evices/screens/evices.dart';
+// import 'package:evices/screens/evices.dart';
 import 'package:provider/provider.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -96,7 +97,7 @@ class DrawerComponents extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         //TODO: Ubah ke ServicesPage()
-                        builder: (context) => const ServicesPage()));
+                        builder: (context) => const HomePage()));
               }
             },
           ),
@@ -289,6 +290,48 @@ class DrawerComponents extends StatelessWidget {
                   .setCurrentScreen(5);
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => const HomePage()));
+            }
+          },
+        ),
+        ListTile(
+          title: Text(
+            "Profile",
+            style: currentScreen == 6
+                ? const TextStyle(fontWeight: FontWeight.bold)
+                : const TextStyle(fontWeight: FontWeight.normal),
+          ),
+          onTap: () {
+            Navigator.of(context).pop();
+            if (currentPage != "Profile") {
+              Provider.of<ScreenState>(context, listen: false)
+                  .setCurrentScreen(6);
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()));
+            }
+          },
+        ),
+        ListTile(
+          title: Text(
+            "Logout",
+            style: currentScreen == 7
+                ? const TextStyle(fontWeight: FontWeight.bold)
+                : const TextStyle(fontWeight: FontWeight.normal),
+          ),
+          onTap: () async {
+            final response = await request
+                .logout("https://ev-ryday.up.railway.app/logout-flutter/");
+            if (response['status']) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Successfully logged out!"),
+              ));
+              Provider.of<ScreenState>(context, listen: false)
+                  .setCurrentScreen(7);
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("An error occured, please try again."),
+              ));
             }
           },
         ),

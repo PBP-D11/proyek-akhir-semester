@@ -1,6 +1,7 @@
 import 'package:evryday/common/forumqueries/get_all_comment.dart';
 import 'package:evryday/common/forumqueries/post_comment.dart';
-import 'package:evryday/drawer.dart';
+import 'package:evryday/widgets/drawer.dart';
+// import 'package:evryday/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/common/forumqueries/Forum.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -27,7 +28,7 @@ class _ForumPageState extends State<ForumPage> {
           "evorum",
           style: TextStyle(color: Colors.white),
         )),
-        drawer: const AppDrawer(),
+        drawer: const DrawerComponents(currentPage: "Forums"),
         body: Container(
           color: Color.fromARGB(255, 30, 30, 44),
           child: Column(

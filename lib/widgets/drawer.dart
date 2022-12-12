@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:evryday/screencs/evorums/forum.dart';
 import 'package:evryday/screens/evishlist/evishlist_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/main.dart';
@@ -13,6 +14,7 @@ import 'package:evryday/screens/profile.dart';
 import 'package:evryday/screens/findcharge/findcharge_page.dart';
 import 'package:provider/provider.dart';
 
+import '../screencs/evorums/evorums.dart';
 import '../screens/evices/evices.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -80,7 +82,7 @@ class DrawerComponents extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         //TODO: Ubah ke ForumsPage()
-                        builder: (context) => const HomePage()));
+                        builder: (context) => const InForum()));
               }
             },
           ),

@@ -22,31 +22,31 @@ class _MyFormPageState extends State<MyFormPage2> {
     var data = convert.jsonEncode(
       <String, dynamic>{
         "name": name,
- 			"phone": phone,
- 			"address": address,
- 			"city": city,
- 			"photo": photo,
- 			"time_open": time_open,
- 			"time_close": time_close,
- 			"link_gmap": link_gmap,
+        "phone": phone,
+        "address": address,
+        "city": city,
+        "photo": photo,
+        "time_open": time_open,
+        "time_close": time_close,
+        "link_gmap": link_gmap,
       },
     );
 
-    final response = await request.postJson("http://localhost:8000/services/add", data);
+    final response =
+        await request.postJson("http://localhost:8000/services/add", data);
     if (response['message'] == 'SUCCESS') {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Feedback berhasil tersimpan"),
       ));
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => const ServicesPage(
-
-          )));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const ServicesPage()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Gagal!"),
       ));
     }
   }
+
   //
   @override
   Widget build(BuildContext context) {
@@ -170,7 +170,7 @@ class _MyFormPageState extends State<MyFormPage2> {
                     ElevatedButton(
                         child: Text('Pilih Jam Tutup'),
                         onPressed: () async {
-                          print("PLISSFDSFJSDFYSDFYUKADGKUFGSDAKJ")
+                          print("PLISSFDSFJSDFYSDFYUKADGKUFGSDAKJ");
                           showTimePicker(
                             context: context,
                             initialTime: TimeOfDay(hour: 10, minute: 30),

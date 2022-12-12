@@ -1,6 +1,7 @@
 import 'package:evryday/common/forumqueries/get_all_forum.dart';
-import 'package:evryday/drawer.dart';
+// import 'package:evryday/drawer.dart';
 import 'package:evryday/screencs/evorums/widgets/forumForm.dart';
+import 'package:evryday/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/screencs/evorums/forum.dart';
 // import 'package:start_in_mobile/pages/inforum/widgets/forumModal.dart';
@@ -35,16 +36,12 @@ class _InForumState extends State<InForum> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        drawer: const AppDrawer(),
+        drawer: const DrawerComponents(currentPage: "Forums"),
         floatingActionButton: FloatingActionButton(
-          onPressed: request.loggedIn
-              ? () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ForumForm()));
-                }
-              : null,
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ForumForm()));
+          },
           backgroundColor: request.loggedIn
               ? const Color.fromARGB(255, 85, 97, 255)
               : Color.fromARGB(255, 189, 188, 188),

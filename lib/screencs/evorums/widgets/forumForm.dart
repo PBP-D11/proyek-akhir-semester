@@ -1,5 +1,5 @@
-import 'package:evryday/drawer.dart';
 import 'package:evryday/screencs/evorums/evorums.dart';
+import 'package:evryday/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -19,9 +19,14 @@ class _ForumFormState extends State<ForumForm> {
   final _forumFormKey = GlobalKey<FormState>();
 
   String title = "";
-  String content = "";
-  String defaulCategory = "misc";
-  List<String> categories = ["misc", "technology", "startup", "business"];
+  String body = "";
+  String defaulTopic = "Cars";
+  List<String> topics = [
+    "Cars",
+    "Formula-e",
+    "Regulations",
+    "Charging station"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,7 @@ class _ForumFormState extends State<ForumForm> {
       appBar: AppBar(
         title: Text('Create Forum'),
       ),
-      drawer: AppDrawer(),
+      drawer: const DrawerComponents(currentPage: "Forums"),
       body: Form(
         key: _forumFormKey,
         child: SingleChildScrollView(
@@ -133,13 +138,13 @@ class _ForumFormState extends State<ForumForm> {
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
-                        content = value!;
+                        body = value!;
                       });
                     },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
-                        content = value!;
+                        body = value!;
                       });
                     },
                     // Validator sebagai validasi form
@@ -157,7 +162,7 @@ class _ForumFormState extends State<ForumForm> {
                     ),
                     onPressed: () async {
                       if (_forumFormKey.currentState!.validate()) {
-                        postForum(request, title, defaulCategory, content);
+                        postForum(request, title, body, defaulTopic);
                         _forumFormKey.currentState!.reset();
                         Navigator.pushReplacement(
                             context,

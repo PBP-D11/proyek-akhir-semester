@@ -27,6 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('My Profile'),
+          backgroundColor: const Color.fromRGBO(42, 44, 62, 1),
         ),
         drawer: const DrawerComponents(currentPage: "profile"),
         body: FutureBuilder(

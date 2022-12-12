@@ -8,6 +8,7 @@ import 'package:evryday/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
 import 'package:evryday/screens/profile.dart';
+import 'package:evryday/screens/news/news.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
 // import 'package:evices/screens/evices.dart';
 import 'package:evryday/screens/findcharge/findcharge_page.dart';
@@ -192,7 +193,7 @@ class DrawerComponents extends StatelessWidget {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(5);
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+                  MaterialPageRoute(builder: (context) => const NewsPage()));
             }
           },
         ),

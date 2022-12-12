@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  evishlist:
+    dependency: transitive
+    description:
+      path: "../evishlist"
+      relative: true
+    source: path
+    version: "0.0.1"
   evryday:
     dependency: "direct main"
     description:
@@ -71,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.4"
+  findcharge:
+    dependency: transitive
+    description:
+      path: "../findcharge"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter

@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:evishlist/screen/evishlist_home_page.dart';
+import 'package:evryday/screens/evishlist/evishlist_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/main.dart';
 import 'package:evryday/screens/homepage.dart';
@@ -9,7 +9,8 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
 import 'package:evryday/screens/profile.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
-// import '../evices/evices.dart';
+// import 'package:evices/screens/evices.dart';
+import 'package:evryday/screens/findcharge/findcharge_page.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/evices/evices.dart';
@@ -99,7 +100,7 @@ class DrawerComponents extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         //TODO: Ubah ke ServicesPage()
-                        builder: (context) => const ServicesPage()));
+                        builder: (context) => const HomePage()));
               }
             },
           ),
@@ -204,21 +205,21 @@ class DrawerComponents extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            "Find Location",
+            "Find Charge",
             style: currentScreen == 1
                 ? const TextStyle(fontWeight: FontWeight.bold)
                 : const TextStyle(fontWeight: FontWeight.normal),
           ),
           onTap: () {
             Navigator.of(context).pop();
-            if (currentPage != "Find Location") {
+            if (currentPage != "Find Charge") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(1);
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       //TODO: Ubah ke FindLocationPage()
-                      builder: (context) => const HomePage()));
+                      builder: (context) => const MyFindChargePage()));
             }
           },
         ),

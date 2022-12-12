@@ -1,49 +1,59 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
 import 'package:evices/models/services.dart';
 import 'package:evices/screens/form.dart';
-import 'dart:convert' as convert;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:evryday/common/cookie_request.dart';
 
-class ServicePage extends StatefulWidget {
-	const ServicePage({Key? key}) : super(key: key);
+class ServicesPage extends StatefulWidget {
+	const ServicesPage({Key? key}) : super(key: key);
 	
 	@override
-	State<ServicePage> createState() => _Service_HomePageState();
+	State<ServicesPage> createState() => _Service_HomePageState();
 }
 
-class _Service_HomePageState extends State<ServicePage> {
-	final _formKey = GlobalKey<FormState>();
-	String name, phone, address, city, photo, link_gmap;
+class _Service_HomePageState extends State<ServicesPage> {
+	String? name, phone, address, city, photo, link_gmap;
     TimeOfDay? time_open, time_close;
+	
+	  //get utf8 => null;
 	
 	// Main function check : GET/Fetch work?
 	// Alternative : fetch using http
-	Future<List<Service>> fetchFoodData(CookieRequest request) async {
-		var response = await request.get("https://ev-ryday.up.railway.app/services/json/");
-	
-		List<Service> listService = [];
-		for (var d in response) {
+	Future<List<Services>> fetchServicesData() async {
+		var url = Uri.parse("https://ev-ryday.up.railway.app/services/json/");
+		var response = await http.get(
+			url,
+			headers: {
+				"Content-Type": "application/json",
+			},
+		);
+		var data = jsonDecode(utf8.decode(response.bodyBytes));
+		List<Services> listService = [];
+		for (var d in data) {
 			if (d != null) {
-	    		listService.add(Service.fromJson(d));
+	    		listService.add(Services.fromJson(d));
 			}
 		}
 		
-		return listFoodData;
+		return listService;
 	}
 	
 	@override
 	Widget build(BuildContext context) {
-		final request = context.watch<CookieRequest>();
+		// final request = context.watch<CookieRequest>();
 		return Scaffold(
 		    appBar: AppBar(
 		      title: const Text("All Services"),
 		    ),
-		    drawer: const DrawerComponents(),
+		    drawer: const DrawerComponents(currentPage: 'Services'),
 		    body: (
 				FutureBuilder(
-		            future: fetchFoodData(request),
+		            future: fetchServicesData(request),
 		            builder: (context, AsyncSnapshot snapshot) {
 		            	if (snapshot.data == null) {
 		                	return const Center(child: CircularProgressIndicator());
@@ -53,7 +63,7 @@ class _Service_HomePageState extends State<ServicePage> {
 			                  	return Column(
 			                    	children: const [
 			                      		Text(
-			                        		"Tidak ada food list :(",
+			                        		"Tidak ada tempat service :(",
 			                        		style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
 			                      		),
 			                      		SizedBox(height: 8),
@@ -80,7 +90,7 @@ class _Service_HomePageState extends State<ServicePage> {
 										),
 			                            child: Card(
 			                            	child: SizedBox(
-			                                	height: 95,
+			                                	height: 250,
 			                                	child: Column(children: <Widget>[
 			                                		// Main function check : Is data valid with logic?
 			                                  		Padding(
@@ -88,7 +98,7 @@ class _Service_HomePageState extends State<ServicePage> {
 					                                    child: Align(
 						                                    alignment: Alignment.centerLeft,
 						                                    child: Text(
-						                                    	snapshot.data![index].fields.food_name,
+						                                    	"Nama: " + snapshot.data![index].name,
 						                                        style: const TextStyle(fontSize: 30),
 						                                    ),
 					                                    ),
@@ -98,7 +108,27 @@ class _Service_HomePageState extends State<ServicePage> {
 						                                    child: Align(
 						                                    alignment: Alignment.centerLeft,
 						                                    child: Text(
-						                                        snapshot.data![index].fields.food_expired_date,
+						                                        "Waktu: " + snapshot.data![index].time_open + " - " + snapshot.data![index].time_close,
+						                                        style: const TextStyle(fontSize: 15),
+						                                    ),
+					                                    ),
+			                                  		),
+													Padding(
+			                                    		padding: const EdgeInsets.only(top: 10, left: 12),
+						                                    child: Align(
+						                                    alignment: Alignment.centerLeft,
+						                                    child: Text(
+						                                        "Waktu: " + snapshot.data![index].time_open + " - " + snapshot.data![index].time_close,
+						                                        style: const TextStyle(fontSize: 15),
+						                                    ),
+					                                    ),
+			                                  		),
+													Padding(
+			                                    		padding: const EdgeInsets.only(top: 10, left: 12),
+						                                    child: Align(
+						                                    alignment: Alignment.centerLeft,
+						                                    child: Text(
+						                                        "Alamat: " + snapshot.data![index].address + " - " + snapshot.data![index].city,
 						                                        style: const TextStyle(fontSize: 15),
 						                                    ),
 					                                    ),
@@ -112,7 +142,7 @@ class _Service_HomePageState extends State<ServicePage> {
 		            	}
 		            }
 				)
-			)
+			),
 		    floatingActionButton: Padding(
 		    	padding: const EdgeInsets.only(left: 35),
 		    	child: Row(

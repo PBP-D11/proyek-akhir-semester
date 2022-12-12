@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   evryday:
     path: ../.
+  provider: ^6.0.4
+  pbp_django_auth: ^0.3.0
 
 dev_dependencies:
   flutter_test:

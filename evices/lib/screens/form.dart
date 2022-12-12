@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
-import 'dart:convert' as convert;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:evryday/common/cookie_request.dart';
 
@@ -13,7 +14,7 @@ class MyFormPage extends StatefulWidget {
 
 class _MyFormPageState extends State<MyFormPage> {
     final _formKey = GlobalKey<FormState>();
-    String name, phone, address, city, photo, link_gmap;
+    String? name, phone, address, city, photo, link_gmap;
     TimeOfDay? time_open, time_close;
     //final request = context.watch<CookieRequest>();
     @override
@@ -22,7 +23,7 @@ class _MyFormPageState extends State<MyFormPage> {
 	        appBar: AppBar(
 	            title: const Text('Add new Evices'),
 	        ),
-	        drawer: const DrawerComponents(),
+	        drawer: const DrawerComponents(currentPage: '',),
 	        body: Column(
 	            children: [
 	                Form(
@@ -38,12 +39,12 @@ class _MyFormPageState extends State<MyFormPage> {
 											),
 			                                onSaved: (String? value) {
 			                                    setState(() {
-			                                    	nama = value!;
+			                                    	name = value!;
 			                                    });
 			                                },
 			                                onChanged: (String? value) {
 			                                    setState(() {
-			                                    	nama = value!;
+			                                    	name = value!;
 			                                    });
 			                                },
 			                                validator: (String? value) {
@@ -60,17 +61,17 @@ class _MyFormPageState extends State<MyFormPage> {
 											),
 			                                onSaved: (String? value) {
 			                                    setState(() {
-			                                    	phone = int.parse(value!);
+			                                    	phone = value!;
 			                                    });
 			                                },
 			                                onChanged: (String? value) {
 			                                    setState(() {
-			                                    	phone = int.parse(value!);
+			                                    	phone = value!;
 			                                    });
 			                                },
 			                                validator: (String? value) {
 			                                    if (value == null || value.isEmpty) {
-			                                    return "Nomor telepon tak boleh kosong";
+			                                    	return "Nomor telepon tak boleh kosong";
 			                                    } else if (int.tryParse(value) == null) {
 			                                    	return "Nomor telepon harus berupa angka";
 			                                    }
@@ -128,9 +129,9 @@ class _MyFormPageState extends State<MyFormPage> {
 												showTimePicker(
 													context: context,
 													initialTime: TimeOfDay(hour: 10, minute: 30),
-												).then((date){
+												).then((time){
 													setState(() {
-														time_open = value;
+														time_open = time!;
 													})
 												})
 											}
@@ -142,9 +143,9 @@ class _MyFormPageState extends State<MyFormPage> {
 												showTimePicker(
 													context: context,
 													initialTime: TimeOfDay(hour: 10, minute: 30),
-												).then((date){
+												).then((time){
 													setState(() {
-														time_close = value;
+														time_close = time!;
 													})
 												})
 											}
@@ -207,30 +208,32 @@ class _MyFormPageState extends State<MyFormPage> {
 			                        style: ButtonStyle(
 			                            backgroundColor: MaterialStateProperty.all(Colors.blue),
 			                        ),
-			                        onPressed: () async {
-			                            if (_formKey.currentState!.validate() && time_open != NULL && time_close != NULL) {
-			                            	final response = await request.post(
-		                                    	"https://ev-ryday.up.railway.app/services/add",
-												{
-													
-			                                        "name": name,
-													"phone": phone,
-													"address": address,
-													"city": city,
-													"photo": photo,
-													"time_open": time_open.toString(),
-													"time_close": time_close.toString(),
-													"link_gmap": link_gmap,
-		                                    	}
-											);
-				                            if (response.status == 200) {
-			                                    ScaffoldMessenger.of(context)
-			                                    	.showSnackBar(const SnackBar(
-			                                    		content: Text("Berhasil menambahkan Services!"),
-			                                    	));
-			                                    Navigator.pop(context);
-			                                }
-			                            }
+			                        onPressed: () {
+										Text('Hello, PBP, How are you?'),
+// 			                            if (_formKey.currentState!.validate() && time_open != null && time_close != null) {
+// 											var url = Uri.parse("https://ev-ryday.up.railway.app/services/add")
+// 			                            	var response = await http.post(
+// 		                                    	url,
+// 												{
+// 													"name": name,
+// 													"phone": phone,
+// 													"address": address,
+// 													"city": city,
+// 													"photo": photo,
+// 													"time_open": time_open.toString(),
+// 													"time_close": time_close.toString(),
+// 													"link_gmap": link_gmap,
+// 												}
+// 											);
+// }
+// 											);
+// 			                                    ScaffoldMessenger.of(context)
+// 			                                    	.showSnackBar(const SnackBar(
+// 			                                    		content: Text("Berhasil menambahkan Services!"),
+// 			                                    	));
+// 			                                    Navigator.pop(context);
+// 			                                }
+// 			                            }
 			                        },
 			                        child: Padding(
 			                            padding: const EdgeInsets.symmetric(horizontal: 8.0),

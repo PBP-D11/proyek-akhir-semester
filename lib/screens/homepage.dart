@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
+  
 
   String checkTitle(dynamic username) {
     if (username == null) {
@@ -40,54 +41,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
+      backgroundColor: Color.fromRGBO(30, 30, 44, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(42, 44, 62, 1),
         title: Text(checkTitle(request.getJsonData()['username'])),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (_counter % 2 == 0) ...[
-              const Text(
-                "GENAP",
-                style: TextStyle(
-                  color: Colors.red,
-                ),
-              ),
-            ] else ...[
-              const Text(
-                "GANJIL",
-                style: TextStyle(
-                  color: Colors.blue,
-                ),
-              )
-            ],
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left: 30),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            if (_counter > 0)
-              FloatingActionButton(
-                onPressed: _decrementCounter,
-                tooltip: 'Decrement',
-                child: const Icon(Icons.remove),
-              ),
-            Expanded(child: Container()),
-            FloatingActionButton(
-              onPressed: _incrementCounter,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ),
-          ],
-        ),
+        child: null /* add child content here */,
       ),
       drawer: const DrawerComponents(currentPage: "homepage"),
     );

@@ -6,8 +6,7 @@ import 'package:evryday/screens/homepage.dart';
 import 'package:evryday/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
-
-import '../../evishlist/lib/screen/evishlist_home_page.dart';
+// import '../../evishlist/lib/screen/evishlist_home_page.dart';
 import 'package:provider/provider.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -272,7 +271,7 @@ class DrawerComponents extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const WishlistPage()));
+                      builder: (context) => const EvishlistHomePage()));
             }
           },
         ),

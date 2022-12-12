@@ -268,8 +268,10 @@ class DrawerComponents extends StatelessWidget {
             if (currentPage != "Wishlist") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(4);
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EvishlistHomePage()));
             }
           },
         ),

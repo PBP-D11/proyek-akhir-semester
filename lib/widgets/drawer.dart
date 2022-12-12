@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:evishlist/screen/evishlist_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/main.dart';
 import 'package:evryday/screens/homepage.dart';
@@ -8,6 +9,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
 import 'package:evryday/screens/profile.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
+import 'package:evices/screens/evices.dart';
 import 'package:provider/provider.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -95,7 +97,7 @@ class DrawerComponents extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         //TODO: Ubah ke ServicesPage()
-                        builder: (context) => const HomePage()));
+                        builder: (context) => const ServicesPage()));
               }
             },
           ),
@@ -267,8 +269,10 @@ class DrawerComponents extends StatelessWidget {
             if (currentPage != "Wishlist") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(4);
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EvishlistHomePage()));
             }
           },
         ),

@@ -102,9 +102,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<<<< Temporary merge branch 1
-  http:
+  flutter_web_plugins:
     dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  http:
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -117,8 +121,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
-=========
->>>>>>>>> Temporary merge branch 2
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.4"
   lints:
     dependency: transitive
     description:

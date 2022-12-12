@@ -8,6 +8,7 @@ import 'package:evryday/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
+import 'package:evices/screens/evices.dart';
 import 'package:provider/provider.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -95,7 +96,7 @@ class DrawerComponents extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         //TODO: Ubah ke ServicesPage()
-                        builder: (context) => const HomePage()));
+                        builder: (context) => const ServicesPage()));
               }
             },
           ),

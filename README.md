@@ -12,6 +12,8 @@ Selamat datang ke repositori kelompok D11, yaitu aplikasi yang bernama EV-ryday!
 [![Release](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml)
 [![Build status](https://build.appcenter.ms/v0.1/apps/7aafd7b4-a59b-46fd-bb8d-f5060b7a58f7/branches/main/badge)](https://appcenter.ms)
 
+[Link APK](https://install.appcenter.ms/orgs/evryday/apps/Ev-ryday)
+
 ## 🧑🏻‍💻 Pengembang Aplikasi : Kelompok - D11👩🏻‍💻
 
 - [Muhammad Hafizha Dhiyaulhaq (Hafizh)](https://github.com/hafizhdh) (2106750723)

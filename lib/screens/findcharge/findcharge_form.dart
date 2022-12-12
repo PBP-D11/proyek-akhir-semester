@@ -1,6 +1,7 @@
 import 'package:evryday/screens/findcharge/findcharge_page.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class FindChargeForm extends StatefulWidget {
   const FindChargeForm({super.key});
@@ -15,7 +16,7 @@ class _FindChargeFormState extends State<FindChargeForm> {
   String namaStation = "";
   String namaKota = "";
   String alamat = "";
-  String timeOpen = "10:00";
+  String timeOpen = "";
   String timeClose = "";
   String linkGmap = "";
 
@@ -31,6 +32,7 @@ class _FindChargeFormState extends State<FindChargeForm> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
             leading: IconButton(
@@ -245,30 +247,26 @@ class _FindChargeFormState extends State<FindChargeForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: ListView(
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            shrinkWrap: true,
-                            children: <Widget>[
-                              Center(child: Text(timeOpen)),
-                              const SizedBox(height: 20),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Kembali'),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                    void addStation(request, namaStation, namaKota, alamat,
+                        timeOpen, timeClose, linkGmap) async {
+                      var response = await request.post(
+                          'https://ev-ryday.up.railway.app/find-charge/add/ajax',
+                          {
+                            "nama_station": namaStation,
+                            "kota": namaKota,
+                            "alamat": alamat,
+                            "time_open": timeOpen,
+                            "time_close": timeClose,
+                            "link_gmap": linkGmap,
+                          });
+                    }
+
+                    addStation(request, namaStation, namaKota, alamat, timeOpen,
+                        timeClose, linkGmap);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyFindChargePage()),
                     );
                   }
                 },

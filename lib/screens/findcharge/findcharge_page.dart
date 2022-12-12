@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
 import 'package:evryday/screens/findcharge/findcharge_detail.dart';
-import 'package:evryday/screens/findcharge_form.dart';
+import 'package:evryday/screens/findcharge/findcharge_form.dart';
 import 'package:evryday/common/findcharge_fetch.dart';
 
 class MyFindChargePage extends StatefulWidget {

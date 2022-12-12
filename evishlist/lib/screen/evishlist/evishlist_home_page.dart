@@ -1,11 +1,15 @@
 // ignore_for_file: camel_case_types
 
+import 'package:evishlist/models/wishlist_model.dart';
 import 'package:flutter/material.dart';
 
-import '../common/fetch_wishlist.dart';
-import '../models/wishlist_model.dart';
-import '../widget/widget.dart';
-// import '../widget/drawer.dart';
+import '../../common/fetch_wishlist.dart';
+import '../../widget/widget.dart';
+
+// import '../common/fetch_wishlist.dart';
+// import '../models/wishlist_model.dart';
+// import '../widget/widget.dart';
+// // import '../widget/drawer.dart';
 
 class EvishlistHomePage extends StatefulWidget {
   const EvishlistHomePage({Key? key}) : super(key: key);

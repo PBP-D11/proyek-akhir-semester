@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 import 'evishlist_home_page.dart';
 
@@ -17,7 +18,7 @@ class _EvishlistFormState extends State<EvishlistForm> {
   String category = "";
   String price = "";
   String photo = "";
-  String linkBuy = "";
+  String link_buy = "";
 
   @override
   void initState() {
@@ -26,8 +27,10 @@ class _EvishlistFormState extends State<EvishlistForm> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color.fromRGBO(30, 30, 44, 1),
             leading: IconButton(
               onPressed: (() {
                 Navigator.pushReplacement(
@@ -156,13 +159,13 @@ class _EvishlistFormState extends State<EvishlistForm> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      linkBuy = value!;
+                      link_buy = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      linkBuy = value!;
+                      link_buy = value!;
                     });
                   },
                   // Validator sebagai validasi form
@@ -189,13 +192,13 @@ class _EvishlistFormState extends State<EvishlistForm> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      linkBuy = value!;
+                      link_buy = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      linkBuy = value!;
+                      link_buy = value!;
                     });
                   },
                   // Validator sebagai validasi form
@@ -213,29 +216,25 @@ class _EvishlistFormState extends State<EvishlistForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: ListView(
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            shrinkWrap: true,
-                            children: <Widget>[
-                              const SizedBox(height: 20),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Kembali'),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                    void addEvishlist(
+                        request, name, price, category, photo, link_buy) async {
+                      var response = await request.post(
+                          'https://ev-ryday.up.railway.app/evishlist/add-flutter/',
+                          {
+                            "name": name,
+                            "category": category,
+                            "price": price,
+                            "photo": photo,
+                            "link_buy": link_buy,
+                          });
+                    }
+
+                    addEvishlist(
+                        request, name, category, price, photo, link_buy);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EvishlistHomePage()),
                     );
                   }
                 },

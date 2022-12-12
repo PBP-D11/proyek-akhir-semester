@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/wishlist_model.dart';
-import '../screen/detail_cars.dart';
+import '../../models/wishlist_model.dart';
+import '../../screens/evishlist/detail_cars.dart';
+
 
 class CarItem extends StatelessWidget {
   const CarItem({

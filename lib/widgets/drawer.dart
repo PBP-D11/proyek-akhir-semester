@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:evryday/screencs/evorums/evorums.dart';
 import 'package:evryday/screens/evishlist/evishlist_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/main.dart';
@@ -14,6 +15,7 @@ import 'package:evryday/screens/news/news.dart';
 import 'package:evryday/screens/findcharge/findcharge_page.dart';
 import 'package:provider/provider.dart';
 
+import '../screencs/evorums/evorums.dart';
 import '../screens/evices/evices.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -137,7 +139,7 @@ class DrawerComponents extends StatelessWidget {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(2);
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+                  MaterialPageRoute(builder: (context) => const InForum()));
             }
           },
         ),

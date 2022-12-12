@@ -7,17 +7,10 @@ Selamat datang ke repositori kelompok D11, yaitu aplikasi yang bernama EV-ryday!
 > diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia
 > pada Semester Gasal, Tahun Ajaran 2022/2023.
 
-<<<<<<< HEAD
 [![Staging](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/pre-release.yml)
 [![Release](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml)
 [![AppCenter Build Status](https://build.appcenter.ms/v0.1/apps/c1c2d3f3-a0b4-4138-aa3f-f39203c8d91e/branches/main/badge)](https://appcenter.ms)
-=======
-[![Staging](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/staging.yml)
-[![Pre-Release](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/pre-release.yml)
-[![Release](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-D11/proyek-tengah-semester/actions/workflows/release.yml)
-[![AppCenter Build Status](https://build.appcenter.ms/v0.1/apps/c1c2d3f3-a0b4-4138-aa3f-f39203c8d91e/branches/main/badge)](https://appcenter.ms))
->>>>>>> 154839877f52b3232fdb852ca728fdcce536fb6c
 
 ## 🧑🏻‍💻 Pengembang Aplikasi : Kelompok - D11👩🏻‍💻
 

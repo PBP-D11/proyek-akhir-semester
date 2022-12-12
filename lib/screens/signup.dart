@@ -1,4 +1,5 @@
 import 'package:evryday/screens/login.dart';
+import 'package:evryday/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/main.dart';
 import 'package:provider/provider.dart';
@@ -116,7 +117,8 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Stack(
         children: [
           Scaffold(
-            backgroundColor: Colors.transparent,
+            appBar: AppBar(title: const Text("Sign Up")),
+            drawer: const DrawerComponents(currentPage: "Sign Up"),
             body: SingleChildScrollView(
               child: Column(
                 children: [
@@ -128,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Center(
                         child: Text('Sign Up',
                             style:
-                                TextStyle(fontSize: 60, color: Colors.white)),
+                                TextStyle(fontSize: 60, color: Colors.black)),
                       ),
                     ],
                   ),
@@ -142,16 +144,16 @@ class _SignUpPageState extends State<SignUpPage> {
                             horizontal: 25.0, vertical: 10.0),
                         child: Focus(
                             child: TextFormField(
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 hintText: "contoh: Dummy123",
                                 labelText: "Username",
                                 labelStyle:
-                                    const TextStyle(color: Colors.white),
+                                    const TextStyle(color: Colors.black),
                                 icon: const Icon(Icons.people),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0)),
-                                hintStyle: const TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.black),
                               ),
                               controller: _usernameCtrl,
                               autovalidateMode:
@@ -167,16 +169,16 @@ class _SignUpPageState extends State<SignUpPage> {
                             horizontal: 25.0, vertical: 10.0),
                         child: Focus(
                             child: TextFormField(
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 hintText: "contoh: dummy1@korongko.com",
                                 labelText: "Email",
                                 labelStyle:
-                                    const TextStyle(color: Colors.white),
+                                    const TextStyle(color: Colors.black),
                                 icon: const Icon(Icons.people),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0)),
-                                hintStyle: const TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.black),
                               ),
                               controller: _emailCtrl,
                               autovalidateMode:
@@ -192,17 +194,17 @@ class _SignUpPageState extends State<SignUpPage> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: "Masukkan Password",
                             labelText: "Password",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.black),
                             icon: const Icon(
                               Icons.lock_outline,
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.black),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -229,18 +231,18 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Focus(
                             child: TextFormField(
                               obscureText: true,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                 hintText: "Konfirmasi Password",
                                 labelText: "Password",
                                 labelStyle:
-                                    const TextStyle(color: Colors.white),
+                                    const TextStyle(color: Colors.black),
                                 icon: const Icon(
                                   Icons.lock_outline,
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0)),
-                                hintStyle: const TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.black),
                               ),
                               controller: _passwordCtrl,
                               autovalidateMode:
@@ -255,17 +257,17 @@ class _SignUpPageState extends State<SignUpPage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: "Masukkan Nama Depan",
                             labelText: "First Name",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.black),
                             icon: const Icon(
                               Icons.person_pin_outlined,
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.black),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -290,17 +292,17 @@ class _SignUpPageState extends State<SignUpPage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: "Masukkan Nama Belakang",
                             labelText: "Last Name",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.black),
                             icon: const Icon(
                               Icons.person_pin_outlined,
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.black),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -329,7 +331,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: size.width * 0.8,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: const Color(0xFF24262A),
+                          color: Colors.black26,
                         ),
                         child: TextButton(
                           onPressed: () async {
@@ -374,7 +376,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             'Submit',
                             style: TextStyle(
                                 fontSize: 22,
-                                color: Colors.white,
+                                color: Colors.black54,
                                 height: 1.5,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -389,7 +391,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           const Text(
                             'Already have an account?',
                             style: TextStyle(
-                                fontSize: 22, color: Colors.white, height: 1.5),
+                                fontSize: 22, color: Colors.black, height: 1.5),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -405,7 +407,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               'Login',
                               style: TextStyle(
                                   fontSize: 22,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   height: 1.5,
                                   fontWeight: FontWeight.bold),
                             ),

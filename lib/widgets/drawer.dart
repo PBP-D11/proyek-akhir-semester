@@ -6,7 +6,7 @@ import 'package:evryday/screens/homepage.dart';
 import 'package:evryday/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
-
+// import '../../evishlist/lib/screen/evishlist_home_page.dart';
 import 'package:provider/provider.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -232,8 +232,7 @@ class DrawerComponents extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      //TODO: Ubah ke ForumsPage()
-                      builder: (context) => const HomePage()));
+                      builder: (context) => const ForumsPage()));
             }
           },
         ),
@@ -272,8 +271,7 @@ class DrawerComponents extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      //TODO: Ubha ke WishlistPage()
-                      builder: (context) => const HomePage()));
+                      builder: (context) => const EvishlistHomePage()));
             }
           },
         ),
@@ -292,36 +290,7 @@ class DrawerComponents extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      //TODO: Ubah ke NewsPage()
-                      builder: (context) => const HomePage()));
-            }
-          },
-        ),
-        ListTile(
-          title: Text(
-            "Logout",
-            style: currentScreen == 6
-                ? const TextStyle(fontWeight: FontWeight.bold)
-                : const TextStyle(fontWeight: FontWeight.normal),
-          ),
-          onTap: () async {
-            final response =
-                await request.logout("https://ev-ryday.up.railway.app/logout-flutter/");
-            if (response['status']) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("Successfully logged out!"),
-              ));
-              Provider.of<ScreenState>(context, listen: false)
-                  .setCurrentScreen(0);
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      //TODO: Ubah ke NewsPage()
-                      builder: (context) => const HomePage()));
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("An error occured, please try again."),
-              ));
+                      builder: (context) => const NewsPage()));
             }
           },
         ),

@@ -74,13 +74,12 @@ Manfaat dari aplikasi EV-ryday adalah sebagai berikut:
 |     |               | Mapping models, views, dan integrasi                                                   |          |
 | 2   | Find Charge   | Ada list untuk tempat mengecas mobil listrik                                           | Hafizh   |
 |     |               | Formulir untuk melapor adanya tempat pengecasan                                        |          |
-|     |               | History bila pernah mengecas di tempat yang telah digunakan                            |          |
 | 3   | EVorums       | Ada dasbor seperti forum diskusi SCELE                                                 | Michael  |
 |     |               | User bisa bertanya, menjawab, atau menghapus keduanya                                  |          |
 | 4   | EVices        | Terdapat informasi mengenai tempat servis mobil listrik terdekat                       | Nando    |
 |     | (EV Services) | User bisa mendapatkan kontak lengkap mengenai tempat servis tersebut                   |          |
 | 5   | EVishlist     | Catalog mobil elektronik untuk mengenal pengguna mengenai mobil listrik                | Fitria   |
-|     | (EV Wishlist) | User dapat menandai mobil yang disuka untuk disimpan sebagai wishlist                  |          |
+|     |               | Formulir untuk menambah koleksi catalog bersama                                        |          |
 | 6   | EV News       | User dapat melihat news sekitar EV, dan bisa filtering sesuai source news yang dilihat | Moreno   |
 
 ## Alur Pengintegrasian Web Service
@@ -88,6 +87,13 @@ Manfaat dari aplikasi EV-ryday adalah sebagai berikut:
 Semua bagian dari aplikasi dalam module yang sebelumnya menggunakan form atau ajax akan menggunakan http request pada flutter.
 
 Mendapatkan data dari server ev-ryday di heroku akan menggunakan bantuan library http. Idealnya semua akan dibuat class yang akan mengatasi pemanggilan Http request ke server. Class tersebut sekaligus mengatasi permasalahan csrf token dan session cookie dari pengguna.
+
+Data yang akan diintegrasikan adalah :
+- Evishlist : Koleksi mobil (nama, harga, dan photo)
+- Find Charge : Daftar tempat mengisi baterai mobil (Nama tempat,  jam buka dan tutup, alamat, link gmap)
+- Evices : Service Mobil  (Nama tempat,  jam buka dan tutup, alamat, link gmap)
+- Forum : Pendapat dari akun terkait mobil
+- News : Artikel Berita
 
 Untuk mendapatkan csrf token akan diberikan request yerlebih dahulu ke server, kemudian server akan mengembalikan csrf token. Jika csrf token kadarluarsa, maka akan dilakukan request ulang ke server. Jika session kadarluarsa, maka pengguna wajib akan dialihkan untuk login ulang. Baik csrf token dan session cookie akan disimpan ke local storage dari aplikasi.
 

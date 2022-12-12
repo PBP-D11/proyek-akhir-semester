@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  evishlist:
+    dependency: "direct main"
+    description:
+      path: evishlist
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -110,10 +117,10 @@ packages:
   js:
     dependency: transitive
     description:
-      name: js
+      name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.4"
+    version: "4.0.2"
   lints:
     dependency: transitive
     description:
@@ -328,21 +335,6 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
-  win32:
-    dependency: transitive
-    description:
-      name: win32
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.2"
-  xdg_directories:
-    dependency: transitive
-    description:
-      name: xdg_directories
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0+2"
+    version: "2.1.4"
 sdks:
   dart: ">=2.18.4 <3.0.0"
-  flutter: ">=3.0.0"

@@ -10,7 +10,7 @@ Selamat datang ke repositori kelompok D11, yaitu aplikasi yang bernama EV-ryday!
 [![Staging](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/pre-release.yml)
 [![Release](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml)
-[![AppCenter Build Status](https://build.appcenter.ms/v0.1/apps/c1c2d3f3-a0b4-4138-aa3f-f39203c8d91e/branches/main/badge)](https://appcenter.ms)
+[![Build status](https://build.appcenter.ms/v0.1/apps/7aafd7b4-a59b-46fd-bb8d-f5060b7a58f7/branches/main/badge)](https://appcenter.ms)
 
 ## 🧑🏻‍💻 Pengembang Aplikasi : Kelompok - D11👩🏻‍💻
 

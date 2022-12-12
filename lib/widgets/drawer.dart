@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:evishlist/screen/evishlist_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:evryday/main.dart';
 import 'package:evryday/screens/homepage.dart';
@@ -230,10 +231,8 @@ class DrawerComponents extends StatelessWidget {
             if (currentPage != "Forums") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(2);
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ForumsPage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             }
           },
         ),
@@ -269,10 +268,8 @@ class DrawerComponents extends StatelessWidget {
             if (currentPage != "Wishlist") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(4);
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const EvishlistHomePage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             }
           },
         ),
@@ -288,10 +285,8 @@ class DrawerComponents extends StatelessWidget {
             if (currentPage != "News") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(5);
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NewsPage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             }
           },
         ),

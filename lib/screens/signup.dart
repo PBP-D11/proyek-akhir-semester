@@ -117,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Stack(
         children: [
           Scaffold(
-            appBar: AppBar(title: const Text("Sign Up")),
+            appBar: AppBar(title: const Text("Sign Up"), backgroundColor: const Color.fromRGBO(42, 44, 62, 1),),
             drawer: const DrawerComponents(currentPage: "Sign Up"),
             body: SingleChildScrollView(
               child: Column(
@@ -130,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Center(
                         child: Text('Sign Up',
                             style:
-                                TextStyle(fontSize: 60, color: Colors.black)),
+                                TextStyle(fontSize: 60, color: Color.fromRGBO(42, 44, 62, 1))),
                       ),
                     ],
                   ),

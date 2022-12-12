@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: [
             Scaffold(
-              appBar: AppBar(title: const Text("Login")),
+              appBar: AppBar(title: const Text("Login"), backgroundColor: const Color.fromRGBO(42, 44, 62, 1),),
               drawer: const DrawerComponents(currentPage: "Login"),
               body: Column(
                 children: [
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         'EV-ryday',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Color.fromRGBO(42, 44, 62, 1),
                             fontSize: 60,
                             fontWeight: FontWeight.bold),
                       ),

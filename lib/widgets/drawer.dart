@@ -42,106 +42,106 @@ class DrawerComponents extends StatelessWidget {
               }
             },
           ),
-          ListTile(
-            title: Text(
-              "Find Charge",
-              style: currentScreen == 1
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Find Charge") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(1);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke FindLocationPage()
-                        builder: (context) => const MyFindChargePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Forums",
-              style: currentScreen == 2
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Forums") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(2);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke ForumsPage()
-                        builder: (context) => const HomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Services",
-              style: currentScreen == 3
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Services") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(3);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke ServicesPage()
-                        builder: (context) => const HomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Wishlist",
-              style: currentScreen == 4
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Wishlist") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(4);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubha ke WishlistPage()
-                        builder: (context) => const EvishlistHomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "News",
-              style: currentScreen == 5
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "News") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(5);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke NewsPage()
-                        builder: (context) => const HomePage()));
-              }
-            },
-          ),
+          // ListTile(
+          //   title: Text(
+          //     "Find Charge",
+          //     style: currentScreen == 1
+          //         ? const TextStyle(fontWeight: FontWeight.bold)
+          //         : const TextStyle(fontWeight: FontWeight.normal),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pop();
+          //     if (currentPage != "Find Charge") {
+          //       Provider.of<ScreenState>(context, listen: false)
+          //           .setCurrentScreen(1);
+          //       Navigator.pushReplacement(
+          //           context,
+          //           MaterialPageRoute(
+          //               //TODO: Ubah ke FindLocationPage()
+          //               builder: (context) => const MyFindChargePage()));
+          //     }
+          //   },
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     "Forums",
+          //     style: currentScreen == 2
+          //         ? const TextStyle(fontWeight: FontWeight.bold)
+          //         : const TextStyle(fontWeight: FontWeight.normal),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pop();
+          //     if (currentPage != "Forums") {
+          //       Provider.of<ScreenState>(context, listen: false)
+          //           .setCurrentScreen(2);
+          //       Navigator.pushReplacement(
+          //           context,
+          //           MaterialPageRoute(
+          //               //TODO: Ubah ke ForumsPage()
+          //               builder: (context) => const HomePage()));
+          //     }
+          //   },
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     "Services",
+          //     style: currentScreen == 3
+          //         ? const TextStyle(fontWeight: FontWeight.bold)
+          //         : const TextStyle(fontWeight: FontWeight.normal),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pop();
+          //     if (currentPage != "Services") {
+          //       Provider.of<ScreenState>(context, listen: false)
+          //           .setCurrentScreen(3);
+          //       Navigator.pushReplacement(
+          //           context,
+          //           MaterialPageRoute(
+          //               //TODO: Ubah ke ServicesPage()
+          //               builder: (context) => const HomePage()));
+          //     }
+          //   },
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     "Wishlist",
+          //     style: currentScreen == 4
+          //         ? const TextStyle(fontWeight: FontWeight.bold)
+          //         : const TextStyle(fontWeight: FontWeight.normal),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pop();
+          //     if (currentPage != "Wishlist") {
+          //       Provider.of<ScreenState>(context, listen: false)
+          //           .setCurrentScreen(4);
+          //       Navigator.pushReplacement(
+          //           context,
+          //           MaterialPageRoute(
+          //               //TODO: Ubha ke WishlistPage()
+          //               builder: (context) => const EvishlistHomePage()));
+          //     }
+          //   },
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     "News",
+          //     style: currentScreen == 5
+          //         ? const TextStyle(fontWeight: FontWeight.bold)
+          //         : const TextStyle(fontWeight: FontWeight.normal),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pop();
+          //     if (currentPage != "News") {
+          //       Provider.of<ScreenState>(context, listen: false)
+          //           .setCurrentScreen(5);
+          //       Navigator.pushReplacement(
+          //           context,
+          //           MaterialPageRoute(
+          //               //TODO: Ubah ke NewsPage()
+          //               builder: (context) => const HomePage()));
+          //     }
+          //   },
+          // ),
           ListTile(
             title: Text(
               "Login",

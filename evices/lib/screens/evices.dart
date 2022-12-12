@@ -110,20 +110,12 @@ class _Service_HomePageState extends State<ServicesPage> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, left: 12),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "Waktu: " +
-                                            snapshot.data![index].time_open +
-                                            " - " +
-                                            snapshot.data![index].time_close,
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                    ),
-                                  ),
+								  Image.network(
+									snapshot.data![index].photo,
+									width: 250,
+                                    height: 125,
+                                    fit:BoxFit.fill 
+								  ),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 10, left: 12),

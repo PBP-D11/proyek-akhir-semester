@@ -3,7 +3,7 @@ import 'package:evryday/widgets/drawer.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:evryday/common/cookie_request.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
@@ -16,9 +16,23 @@ class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String? name, phone, address, city, photo, link_gmap;
   TimeOfDay? time_open, time_close;
-  //final request = context.watch<CookieRequest>();
+
+  void service_post(request, name, phone, address, city, photo, link_gmap, time_open, time_close) async {
+    await request.post("https://ev-ryday.up.railway.app/services/add/", {
+    	"name": name,
+		"phone": phone,
+		"address": address,
+		"city": city,
+		"photo": photo,
+		"time_open": time_open,
+		"time_close": time_close,
+		"link_gmap": link_gmap,
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
+	final request = context.read<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add new Evices'),
@@ -205,31 +219,19 @@ class _MyFormPageState extends State<MyFormPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   onPressed: () {
-                    Text('Hello, PBP, How are you?');
-// 			                            if (_formKey.currentState!.validate() && time_open != null && time_close != null) {
-// 											var url = Uri.parse("https://ev-ryday.up.railway.app/services/add")
-// 			                            	var response = await http.post(
-// 		                                    	url,
-// 												{
-// 													"name": name,
-// 													"phone": phone,
-// 													"address": address,
-// 													"city": city,
-// 													"photo": photo,
-// 													"time_open": time_open.toString(),
-// 													"time_close": time_close.toString(),
-// 													"link_gmap": link_gmap,
-// 												}
-// 											);
-// }
-// 											);
-// 			                                    ScaffoldMessenger.of(context)
-// 			                                    	.showSnackBar(const SnackBar(
-// 			                                    		content: Text("Berhasil menambahkan Services!"),
-// 			                                    	));
-// 			                                    Navigator.pop(context);
-// 			                                }
-// 			                            }
+					if (_formKey.currentState!.validate() && time_open != null && time_close != null) {
+						service_post(
+							request,
+							name,
+							phone,
+							address,
+							city,
+							photo,
+							link_gmap,
+							time_open.toString(),
+							time_close.toString(),
+                        );
+					}
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),

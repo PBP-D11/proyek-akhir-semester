@@ -9,6 +9,7 @@ import 'package:evryday/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:evryday/screens/signup.dart';
 import 'package:evryday/screens/profile.dart';
+import 'package:evryday/screens/news/news.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
 // import 'package:evices/screens/evices.dart';
 import 'package:evryday/screens/findcharge/findcharge_page.dart';
@@ -43,106 +44,6 @@ class DrawerComponents extends StatelessWidget {
                     .setCurrentScreen(0);
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => const HomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Find Location",
-              style: currentScreen == 1
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Find Location") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(1);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke FindLocationPage()
-                        builder: (context) => const HomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Forums",
-              style: currentScreen == 2
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Forums") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(2);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke ForumsPage()
-                        builder: (context) => const InForum()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Services",
-              style: currentScreen == 3
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Services") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(3);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke ServicesPage()
-                        builder: (context) => const HomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "Wishlist",
-              style: currentScreen == 4
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "Wishlist") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(4);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubha ke WishlistPage()
-                        builder: (context) => const HomePage()));
-              }
-            },
-          ),
-          ListTile(
-            title: Text(
-              "News",
-              style: currentScreen == 5
-                  ? const TextStyle(fontWeight: FontWeight.bold)
-                  : const TextStyle(fontWeight: FontWeight.normal),
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-              if (currentPage != "News") {
-                Provider.of<ScreenState>(context, listen: false)
-                    .setCurrentScreen(5);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        //TODO: Ubah ke NewsPage()
-                        builder: (context) => const HomePage()));
               }
             },
           ),
@@ -294,7 +195,7 @@ class DrawerComponents extends StatelessWidget {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(5);
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+                  MaterialPageRoute(builder: (context) => const NewsPage()));
             }
           },
         ),

@@ -1,6 +1,5 @@
 import 'package:findcharge/screens/findcharge_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:findcharge/screens/findcharge_page.dart';
 import 'package:findcharge/screens/findcharge_form.dart';
 import 'package:findcharge/util/findcharge_fetch.dart';
 import 'package:evryday/widgets/drawer.dart';

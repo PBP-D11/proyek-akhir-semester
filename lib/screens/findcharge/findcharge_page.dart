@@ -15,8 +15,10 @@ class MyFindChargeState extends State<MyFindChargePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(30, 30, 44, 1),
       appBar: AppBar(
         title: const Text("Find Charge"),
+        backgroundColor: const Color.fromRGBO(42, 44, 62, 1),
       ),
       drawer: const DrawerComponents(currentPage: "Find Charge"),
       body: FutureBuilder(
@@ -46,38 +48,41 @@ class MyFindChargeState extends State<MyFindChargePage> {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) => GestureDetector(
-                    onTap: (() {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FindChargeDetail(
-                                  data: snapshot.data![index])));
-                    }),
-                    child: Container(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-                        child: SizedBox(
-                          width: 300,
-                          height: 350,
-                          child: Card(
-                            child: Column(
-                              children: [
-                                Image.network(
-                                  "https://maps.gstatic.com/tactile/pane/default_geocode-2x.png",
-                                  width: 300,
-                                  height: 250,
-                                ),
-                                ListTile(
-                                  title: Text(
-                                      snapshot.data![index].fields.namaStation),
-                                  subtitle: Text(
-                                    snapshot.data![index].fields.alamat,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                )
-                              ],
+                  onTap: (() {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FindChargeDetail(
+                                data: snapshot.data![index])));
+                  }),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+                    child: SizedBox(
+                      width: 300,
+                      height: 350,
+                      child: Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                        child: Column(
+                          children: [
+                            Image.network(
+                              "https://maps.gstatic.com/tactile/pane/default_geocode-2x.png",
+                              width: 300,
+                              height: 250,
                             ),
-                          ),
-                        ))),
+                            ListTile(
+                              title: Text(
+                                  snapshot.data![index].fields.namaStation),
+                              subtitle: Text(
+                                snapshot.data![index].fields.alamat,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  )
+                ),
               );
             }
           }
@@ -89,7 +94,7 @@ class MyFindChargeState extends State<MyFindChargePage> {
               MaterialPageRoute(builder: (context) => const FindChargeForm()));
         },
         tooltip: 'Add New Charging Station',
-        backgroundColor: Colors.green,
+        backgroundColor: const Color(0xFFFEA150),
         child: const Icon(Icons.add),
       ),
     );

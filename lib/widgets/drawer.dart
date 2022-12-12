@@ -10,6 +10,7 @@ import 'package:evryday/screens/signup.dart';
 import 'package:evryday/screens/profile.dart';
 // import '../../evishlist/lib/screen/evishlist_home_page.dart';
 // import 'package:evices/screens/evices.dart';
+import 'package:evryday/screens/findcharge/findcharge_page.dart';
 import 'package:provider/provider.dart';
 
 class DrawerComponents extends StatelessWidget {
@@ -43,21 +44,21 @@ class DrawerComponents extends StatelessWidget {
           ),
           ListTile(
             title: Text(
-              "Find Location",
+              "Find Charge",
               style: currentScreen == 1
                   ? const TextStyle(fontWeight: FontWeight.bold)
                   : const TextStyle(fontWeight: FontWeight.normal),
             ),
             onTap: () {
               Navigator.of(context).pop();
-              if (currentPage != "Find Location") {
+              if (currentPage != "Find Charge") {
                 Provider.of<ScreenState>(context, listen: false)
                     .setCurrentScreen(1);
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         //TODO: Ubah ke FindLocationPage()
-                        builder: (context) => const HomePage()));
+                        builder: (context) => const MyFindChargePage()));
               }
             },
           ),
@@ -202,21 +203,21 @@ class DrawerComponents extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            "Find Location",
+            "Find Charge",
             style: currentScreen == 1
                 ? const TextStyle(fontWeight: FontWeight.bold)
                 : const TextStyle(fontWeight: FontWeight.normal),
           ),
           onTap: () {
             Navigator.of(context).pop();
-            if (currentPage != "Find Location") {
+            if (currentPage != "Find Charge") {
               Provider.of<ScreenState>(context, listen: false)
                   .setCurrentScreen(1);
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       //TODO: Ubah ke FindLocationPage()
-                      builder: (context) => const HomePage()));
+                      builder: (context) => const MyFindChargePage()));
             }
           },
         ),

@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
-import 'dart:convert';
+import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import '../evices/evices.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class MyFormPage extends StatefulWidget {
-  const MyFormPage({super.key});
+class MyFormPage2 extends StatefulWidget {
+  const MyFormPage2({super.key});
 
   @override
-  State<MyFormPage> createState() => _MyFormPageState();
+  State<MyFormPage2> createState() => _MyFormPageState();
 }
 
-class _MyFormPageState extends State<MyFormPage> {
+class _MyFormPageState extends State<MyFormPage2> {
   final _formKey = GlobalKey<FormState>();
-  String? name, phone, address, city, photo, link_gmap;
-  TimeOfDay? time_open, time_close;
+  String name="", phone="", address="", city="", photo="", link_gmap="", time_open="", time_close="";
 
-  void service_post(request, name, phone, address, city, photo, link_gmap, time_open, time_close) async {
-    await request.post("https://ev-ryday.up.railway.app/services/add/", {
+  TextEditingController timeinputOpen = TextEditingController();
+  TextEditingController timeinputClose = TextEditingController();
+
+  void _initFeedback(request) async {
+
+    final response = await request.post("https://ev-ryday.up.railway.app/services/add-flutter/", {
     	"name": name,
 		"phone": phone,
 		"address": address,
@@ -28,11 +32,25 @@ class _MyFormPageState extends State<MyFormPage> {
 		"time_close": time_close,
 		"link_gmap": link_gmap,
     });
+    print(response['message']); 
+    if (response['message'] == 'SUCCESS') {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Feedback berhasil tersimpan"),
+      ));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const ServicesPage(
+
+          )));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Gagal!"),
+      ));
+    }
   }
-  
+  //
   @override
   Widget build(BuildContext context) {
-	final request = context.read<CookieRequest>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add new Evices'),
@@ -135,35 +153,70 @@ class _MyFormPageState extends State<MyFormPage> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                        child: Text('Pilih Jam Buka'),
-                        onPressed: () async {
-                          showTimePicker(
-                            context: context,
-                            initialTime: TimeOfDay(hour: 10, minute: 30),
-                          ).then((time) {
+                    Padding(
+                      // Menggunakan padding sebesar 8 pixels
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: timeinputOpen,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.timer),
+                          labelText: "Jam Buka",
+                        ),
+                        readOnly: true,
+                        onTap: () async {
+                          TimeOfDay? pickedTime = await showTimePicker(
+                              context: context,
+                              initialTime: const TimeOfDay(hour: 7, minute: 0));
+                          if (pickedTime != null) {
+                            String hours = "";
+                            String minutes = "";
+                            hours = pickedTime.hour < 10
+                                ? "0${pickedTime.hour}"
+                                : "${pickedTime.hour}";
+                            minutes = pickedTime.minute < 10
+                                ? "0${pickedTime.minute}"
+                                : "${pickedTime.minute}";
                             setState(() {
-                              time_open = time!;
+                              time_open = "$hours:$minutes";
+                              timeinputOpen.text = time_open!;
                             });
-                          });
-                        }),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                        child: Text('Pilih Jam Tutup'),
-                        onPressed: () async {
-                          showTimePicker(
-                            context: context,
-                            initialTime: TimeOfDay(hour: 10, minute: 30),
-                          ).then((time) {
+                          }
+                        },
+                      )),
+                    Padding(
+                      // Menggunakan padding sebesar 8 pixels
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: timeinputClose,
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.timer),
+                          labelText: "Jam Tutup",
+                        ),
+                        readOnly: true,
+                        onTap: () async {
+                          TimeOfDay? pickedTime = await showTimePicker(
+                              context: context,
+                              initialTime: const TimeOfDay(hour: 7, minute: 0));
+                          if (pickedTime != null) {
+                            String hours = "";
+                            String minutes = "";
+                            hours = pickedTime.hour < 10
+                                ? "0${pickedTime.hour}"
+                                : "${pickedTime.hour}";
+                            minutes = pickedTime.minute < 10
+                                ? "0${pickedTime.minute}"
+                                : "${pickedTime.minute}";
                             setState(() {
-                              time_close = time!;
+                              time_close = "$hours:$minutes";
+                              timeinputClose.text = time_close!;
                             });
-                          });
-                        }),
+                          }
+                        },
+                      )),
                     const SizedBox(height: 10),
                     TextFormField(
                       decoration: const InputDecoration(
+                        hintText: "Contoh: https://www.google.com/",
                           labelText: "URL Photo", border: OutlineInputBorder()),
                       onSaved: (String? value) {
                         setState(() {
@@ -185,6 +238,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     const SizedBox(height: 10),
                     TextFormField(
                       decoration: const InputDecoration(
+                        hintText: "Contoh: https://www.google.com/",
                           labelText: "Link Google Map",
                           border: OutlineInputBorder()),
                       onSaved: (String? value) {
@@ -219,19 +273,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   onPressed: () {
-					if (_formKey.currentState!.validate() && time_open != null && time_close != null) {
-						service_post(
-							request,
-							name,
-							phone,
-							address,
-							city,
-							photo,
-							link_gmap,
-							time_open.toString(),
-							time_close.toString(),
-                        );
-					}
+                    _initFeedback(request);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),

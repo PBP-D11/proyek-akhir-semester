@@ -1,38 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
-import 'dart:convert';
+import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:evices/screens/evices.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class MyFormPage extends StatefulWidget {
-  const MyFormPage({super.key});
+class MyFormPage2 extends StatefulWidget {
+  const MyFormPage2({super.key});
 
   @override
-  State<MyFormPage> createState() => _MyFormPageState();
+  State<MyFormPage2> createState() => _MyFormPageState();
 }
 
-class _MyFormPageState extends State<MyFormPage> {
+class _MyFormPageState extends State<MyFormPage2> {
   final _formKey = GlobalKey<FormState>();
   String? name, phone, address, city, photo, link_gmap;
   TimeOfDay? time_open, time_close;
 
-  void service_post(request, name, phone, address, city, photo, link_gmap, time_open, time_close) async {
-    await request.post("https://ev-ryday.up.railway.app/services/add/", {
-    	"name": name,
-		"phone": phone,
-		"address": address,
-		"city": city,
-		"photo": photo,
-		"time_open": time_open,
-		"time_close": time_close,
-		"link_gmap": link_gmap,
-    });
+  void _initFeedback(request) async {
+    var data = convert.jsonEncode(
+      <String, dynamic>{
+        "name": name,
+ 			"phone": phone,
+ 			"address": address,
+ 			"city": city,
+ 			"photo": photo,
+ 			"time_open": time_open,
+ 			"time_close": time_close,
+ 			"link_gmap": link_gmap,
+      },
+    );
+
+    final response = await request.postJson("http://localhost:8000/services/add", data);
+    if (response['message'] == 'SUCCESS') {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Feedback berhasil tersimpan"),
+      ));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const ServicesPage(
+
+          )));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Gagal!"),
+      ));
+    }
   }
-  
+  //
   @override
   Widget build(BuildContext context) {
-	final request = context.read<CookieRequest>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add new Evices'),
@@ -152,6 +170,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     ElevatedButton(
                         child: Text('Pilih Jam Tutup'),
                         onPressed: () async {
+                          print("PLISSFDSFJSDFYSDFYUKADGKUFGSDAKJ")
                           showTimePicker(
                             context: context,
                             initialTime: TimeOfDay(hour: 10, minute: 30),
@@ -219,19 +238,8 @@ class _MyFormPageState extends State<MyFormPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   onPressed: () {
-					if (_formKey.currentState!.validate() && time_open != null && time_close != null) {
-						service_post(
-							request,
-							name,
-							phone,
-							address,
-							city,
-							photo,
-							link_gmap,
-							time_open.toString(),
-							time_close.toString(),
-                        );
-					}
+                    print("PLISSS");
+                    _initFeedback(request);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),

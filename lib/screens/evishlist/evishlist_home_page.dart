@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../common/fetch_wishlist.dart';
 import '../../models/wishlist_model.dart';
+import '../../widgets/drawer.dart';
 import '../../widgets/evishlist/widget.dart';
+import 'form_car.dart';
 
 // import '../widget/drawer.dart';
 
@@ -74,6 +76,7 @@ class _Evishlist_HomePageState extends State<EvishlistHomePage> {
         ],
       ),
       // drawer: const AppDrawer(),
+      drawer: const DrawerComponents(currentPage: "Wishlist"),
       body: Builder(builder: (context) {
         if (isLoading && list.isEmpty) {
           return const Center(
@@ -99,7 +102,10 @@ class _Evishlist_HomePageState extends State<EvishlistHomePage> {
       }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFFFEA150),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const EvishlistForm()));
+        },
         tooltip: 'Tambahkan Koleksi!',
         child: const Icon(Icons.add),
       ),

@@ -1,46 +1,48 @@
+import 'package:findcharge/screens/findcharge_page.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 
-import 'evishlist_home_page.dart';
-
-class EvishlistForm extends StatefulWidget {
-  const EvishlistForm({super.key});
+class FindChargeForm extends StatefulWidget {
+  const FindChargeForm({super.key});
 
   @override
-  State<StatefulWidget> createState() => _EvishlistFormState();
+  State<StatefulWidget> createState() => _FindChargeFormState();
 }
 
-class _EvishlistFormState extends State<EvishlistForm> {
+class _FindChargeFormState extends State<FindChargeForm> {
   final _formKey = GlobalKey<FormState>();
 
-  String name = "";
-  String category = "";
-  String price = "";
-  String photo = "";
-  String link_buy = "";
+  String namaStation = "";
+  String namaKota = "";
+  String alamat = "";
+  String timeOpen = "10:00";
+  String timeClose = "";
+  String linkGmap = "";
+
+  TextEditingController timeinputOpen = TextEditingController();
+  TextEditingController timeinputClose = TextEditingController();
 
   @override
   void initState() {
+    timeinputOpen.text = "";
+    timeinputClose.text = "";
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Color.fromRGBO(30, 30, 44, 1),
             leading: IconButton(
               onPressed: (() {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const EvishlistHomePage()));
+                        builder: (context) => const MyFindChargePage()));
               }),
               icon: const Icon(Icons.arrow_back),
             ),
-            title: const Text("New Evishlist Station")),
+            title: const Text("New Charging Station")),
         body: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -50,8 +52,8 @@ class _EvishlistFormState extends State<EvishlistForm> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Name car",
-                    labelText: "Name car",
+                    hintText: "Nama Station",
+                    labelText: "Nama Station",
                     // Menambahkan circular border agar lebih rapi
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -60,19 +62,19 @@ class _EvishlistFormState extends State<EvishlistForm> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      name = value!;
+                      namaStation = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      name = value!;
+                      namaStation = value!;
                     });
                   },
                   // Validator sebagai validasi form
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Name car tidak boleh kosong!';
+                      return 'Nama station tidak boleh kosong!';
                     }
                     return null;
                   },
@@ -84,7 +86,7 @@ class _EvishlistFormState extends State<EvishlistForm> {
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: "Contoh: Jakarta",
-                    labelText: "Kategori",
+                    labelText: "Kota",
                     // Menambahkan circular border agar lebih rapi
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -93,19 +95,19 @@ class _EvishlistFormState extends State<EvishlistForm> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      category = value!;
+                      namaKota = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      category = value!;
+                      namaKota = value!;
                     });
                   },
                   // Validator sebagai validasi form
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Kategori tidak boleh kosong!';
+                      return 'Kota tidak boleh kosong!';
                     }
                     return null;
                   },
@@ -116,8 +118,8 @@ class _EvishlistFormState extends State<EvishlistForm> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "price",
-                    labelText: "price",
+                    hintText: "Alamat",
+                    labelText: "Alamat",
                     // Menambahkan circular border agar lebih rapi
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -126,24 +128,84 @@ class _EvishlistFormState extends State<EvishlistForm> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      price = value!;
+                      alamat = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      price = value!;
+                      alamat = value!;
                     });
                   },
                   // Validator sebagai validasi form
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'price tidak boleh kosong!';
+                      return 'Alamat tidak boleh kosong!';
                     }
                     return null;
                   },
                 ),
               ),
+              Padding(
+                  // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: timeinputOpen,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.timer),
+                      labelText: "Jam Buka",
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      TimeOfDay? pickedTime = await showTimePicker(
+                          context: context,
+                          initialTime: const TimeOfDay(hour: 7, minute: 0));
+                      if (pickedTime != null) {
+                        String hours = "";
+                        String minutes = "";
+                        hours = pickedTime.hour < 10
+                            ? "0${pickedTime.hour}"
+                            : "${pickedTime.hour}";
+                        minutes = pickedTime.minute < 10
+                            ? "0${pickedTime.minute}"
+                            : "${pickedTime.minute}";
+                        setState(() {
+                          timeOpen = "$hours:$minutes";
+                          timeinputOpen.text = timeOpen;
+                        });
+                      }
+                    },
+                  )),
+              Padding(
+                  // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: timeinputClose,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.timer),
+                      labelText: "Jam Tutup",
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      TimeOfDay? pickedTime = await showTimePicker(
+                          context: context,
+                          initialTime: const TimeOfDay(hour: 7, minute: 0));
+                      if (pickedTime != null) {
+                        String hours = "";
+                        String minutes = "";
+                        hours = pickedTime.hour < 10
+                            ? "0${pickedTime.hour}"
+                            : "${pickedTime.hour}";
+                        minutes = pickedTime.minute < 10
+                            ? "0${pickedTime.minute}"
+                            : "${pickedTime.minute}";
+                        setState(() {
+                          timeClose = "$hours:$minutes";
+                          timeinputClose.text = timeClose;
+                        });
+                      }
+                    },
+                  )),
               Padding(
                 // Menggunakan padding sebesar 8 pixels
                 padding: const EdgeInsets.all(8.0),
@@ -159,46 +221,13 @@ class _EvishlistFormState extends State<EvishlistForm> {
                   // Menambahkan behavior saat nama diketik
                   onChanged: (String? value) {
                     setState(() {
-                      link_buy = value!;
+                      linkGmap = value!;
                     });
                   },
                   // Menambahkan behavior saat data disimpan
                   onSaved: (String? value) {
                     setState(() {
-                      link_buy = value!;
-                    });
-                  },
-                  // Validator sebagai validasi form
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'URL tidak boleh kosong!';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Padding(
-                // Menggunakan padding sebesar 8 pixels
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Contoh: https://www.google.com/",
-                    labelText: "URL Link Photo",
-                    // Menambahkan circular border agar lebih rapi
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  // Menambahkan behavior saat nama diketik
-                  onChanged: (String? value) {
-                    setState(() {
-                      link_buy = value!;
-                    });
-                  },
-                  // Menambahkan behavior saat data disimpan
-                  onSaved: (String? value) {
-                    setState(() {
-                      link_buy = value!;
+                      linkGmap = value!;
                     });
                   },
                   // Validator sebagai validasi form
@@ -216,25 +245,30 @@ class _EvishlistFormState extends State<EvishlistForm> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    void addEvishlist(
-                        request, name, price, category, photo, link_buy) async {
-                      var response = await request.post(
-                          'https://ev-ryday.up.railway.app/evishlist/add-flutter/',
-                          {
-                            "name": name,
-                            "category": category,
-                            "price": price,
-                            "photo": photo,
-                            "link_buy": link_buy,
-                          });
-                    }
-
-                    addEvishlist(
-                        request, name, category, price, photo, link_buy);
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EvishlistHomePage()),
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          elevation: 15,
+                          child: ListView(
+                            padding: const EdgeInsets.only(top: 20, bottom: 20),
+                            shrinkWrap: true,
+                            children: <Widget>[
+                              Center(child: Text(timeOpen)),
+                              const SizedBox(height: 20),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Kembali'),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     );
                   }
                 },

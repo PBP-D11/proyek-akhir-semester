@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:evryday/widgets/drawer.dart';
-import '../models/services.dart';
-import '../screens/form.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+//import '../models/services.dart';
+import '../../models/services.dart';
+import '../evices/form2.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:evryday/common/cookie_request.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ServicesPage extends StatefulWidget {
   const ServicesPage({Key? key}) : super(key: key);
@@ -40,12 +42,21 @@ class _Service_HomePageState extends State<ServicesPage> {
 
     return listService;
   }
+  _launchURL(String url) async {
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
     // final request = context.watch<CookieRequest>();
     return Scaffold(
+      backgroundColor: Color.fromRGBO(30, 30, 44, 1),
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(42, 44, 62, 1),
           title: const Text("All Services"),
         ),
         drawer: const DrawerComponents(currentPage: 'Services'),
@@ -82,7 +93,7 @@ class _Service_HomePageState extends State<ServicesPage> {
                                 ]),
                             child: Card(
                               child: SizedBox(
-                                height: 250,
+                                height: 300,
                                 child: Column(children: <Widget>[
                                   // Main function check : Is data valid with logic?
                                   Padding(
@@ -91,7 +102,7 @@ class _Service_HomePageState extends State<ServicesPage> {
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        "Nama: " + snapshot.data![index].name,
+                                        snapshot.data![index].name,
                                         style: const TextStyle(fontSize: 30),
                                       ),
                                     ),
@@ -102,7 +113,7 @@ class _Service_HomePageState extends State<ServicesPage> {
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        "Waktu: " +
+                                        "Jam Operasional: " +
                                             snapshot.data![index].time_open +
                                             " - " +
                                             snapshot.data![index].time_close,
@@ -110,12 +121,12 @@ class _Service_HomePageState extends State<ServicesPage> {
                                       ),
                                     ),
                                   ),
-								  Image.network(
-									snapshot.data![index].photo,
-									width: 250,
-                                    height: 125,
-                                    fit:BoxFit.fill 
-								  ),
+                                  Image.network(
+                                  snapshot.data![index].photo,
+                                  width: 250,
+                                                    height: 125,
+                                                    fit:BoxFit.fill 
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 10, left: 12),
@@ -124,9 +135,20 @@ class _Service_HomePageState extends State<ServicesPage> {
                                       child: Text(
                                         "Alamat: " +
                                             snapshot.data![index].address +
-                                            " - " +
+                                            ", " +
                                             snapshot.data![index].city,
                                         style: const TextStyle(fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, left: 12),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: ElevatedButton(
+                                        onPressed: () => _launchURL(snapshot.data![index].link_gmap),
+                                        child: new Text('Link Google Maps'),
                                       ),
                                     ),
                                   ),
@@ -149,7 +171,7 @@ class _Service_HomePageState extends State<ServicesPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MyFormPage()),
+                          builder: (context) => const MyFormPage2()),
                     );
                   },
                   tooltip: 'Add new Service',

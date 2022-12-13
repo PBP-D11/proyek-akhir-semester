@@ -12,7 +12,7 @@ Selamat datang ke repositori kelompok D11, yaitu aplikasi yang bernama EV-ryday!
 [![Release](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-D11/proyek-akhir-semester/actions/workflows/release.yml)
 [![Build status](https://build.appcenter.ms/v0.1/apps/7aafd7b4-a59b-46fd-bb8d-f5060b7a58f7/branches/main/badge)](https://appcenter.ms)
 
-[Link APK](https://install.appcenter.ms/orgs/evryday/apps/Ev-ryday)
+[Link APK](https://install.appcenter.ms/orgs/evryday/apps/ev-ryday/distribution_groups/pbp-d11)
 
 ## 🧑🏻‍💻 Pengembang Aplikasi : Kelompok - D11👩🏻‍💻
 
@@ -89,9 +89,10 @@ Semua bagian dari aplikasi dalam module yang sebelumnya menggunakan form atau aj
 Mendapatkan data dari server ev-ryday di heroku akan menggunakan bantuan library http. Idealnya semua akan dibuat class yang akan mengatasi pemanggilan Http request ke server. Class tersebut sekaligus mengatasi permasalahan csrf token dan session cookie dari pengguna.
 
 Data yang akan diintegrasikan adalah :
+
 - Evishlist : Koleksi mobil (nama, harga, dan photo)
-- Find Charge : Daftar tempat mengisi baterai mobil (Nama tempat,  jam buka dan tutup, alamat, link gmap)
-- Evices : Service Mobil  (Nama tempat,  jam buka dan tutup, alamat, link gmap)
+- Find Charge : Daftar tempat mengisi baterai mobil (Nama tempat, jam buka dan tutup, alamat, link gmap)
+- Evices : Service Mobil (Nama tempat, jam buka dan tutup, alamat, link gmap)
 - Forum : Pendapat dari akun terkait mobil
 - News : Artikel Berita
 

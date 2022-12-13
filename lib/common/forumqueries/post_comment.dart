@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:flutter/material.dart';
